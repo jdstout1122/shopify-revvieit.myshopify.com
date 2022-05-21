@@ -1,0 +1,245 @@
+{
+  "sections": {
+    "slideshow": {
+      "type": "section-slideshow",
+      "blocks": {
+        "05714406-9877-435a-a136-cf8bc5f43c8e": {
+          "type": "image",
+          "settings": {
+            "bg_position": "center-top",
+            "image": "shopify:\/\/shop_images\/whitejumpsuit_2376x_5889aeb9-b473-49dd-a8d4-990d4821f9f7.jpg",
+            "mobile_image": "shopify:\/\/shop_images\/19380073_124733538120196_4550294709381103616_n.jpg",
+            "overlay_opacity": 0,
+            "overlay_color": "#000000",
+            "title": "Yeon Archive Sale",
+            "description": "Up to 80% off in the only sale of the year for Yeon",
+            "flex_align": "align--middle-left",
+            "text_color": "text-light",
+            "transparent": true,
+            "link_text": "View products",
+            "link": "shopify:\/\/collections\/yeon-archive-sale",
+            "button_color": "btn--white",
+            "button_style": "hero__btn btn btn--large btn--outline caps"
+          }
+        },
+        "slideshow-0": {
+          "type": "image",
+          "settings": {
+            "bg_position": "center-center",
+            "image": "shopify:\/\/shop_images\/1058-5U7A0967_31eadf1b-052f-41ee-8c19-271d8529b655.jpg",
+            "overlay_opacity": 15,
+            "overlay_color": "#000000",
+            "title": "Discover new brands",
+            "description": "We bring the best of small, luxury fashion. \nWe support independent designers and want to encourage everyone to shop small and buy amazing, one-of-a-kind fashion that they can keep and treasure forever.",
+            "flex_align": "align--middle-center",
+            "text_color": "text-light",
+            "transparent": true,
+            "link_text": "shop all",
+            "link": "shopify:\/\/collections\/shop-all",
+            "button_color": "btn--white",
+            "button_style": "hero__btn btn btn--large btn--outline caps"
+          }
+        },
+        "slideshow-1": {
+          "type": "image",
+          "settings": {
+            "bg_position": "center-center",
+            "image": "shopify:\/\/shop_images\/pexels-ron-lach-9849939.jpg",
+            "overlay_opacity": 15,
+            "overlay_color": "#000000",
+            "title": "meet our designers",
+            "description": "See the artist behind the clothing.",
+            "flex_align": "align--middle-center",
+            "text_color": "text-light",
+            "transparent": true,
+            "link_text": "view designer profiles",
+            "link": "shopify:\/\/blogs\/designer-profile",
+            "button_color": "btn--white",
+            "button_style": "hero__btn btn btn--large btn--outline caps"
+          }
+        }
+      },
+      "block_order": [
+        "05714406-9877-435a-a136-cf8bc5f43c8e",
+        "slideshow-0",
+        "slideshow-1"
+      ],
+      "settings": {
+        "height": "screen-height-two-thirds",
+        "transition": "slide",
+        "arrows_style": false,
+        "dots_style": "line",
+        "autoplay": false,
+        "autoplay_speed": 8
+      }
+    },
+    "163733449789b433f1": {
+      "type": "section-collection",
+      "settings": {
+        "heading": "just in",
+        "description": "",
+        "text_alignment": "center",
+        "link_text": "shop new arrivals",
+        "link_url": "shopify:\/\/collections\/just-in",
+        "button_color": "btn--black",
+        "button_style": "hero__btn btn btn--input btn--outline caps",
+        "featured_collection": "just-in",
+        "grid": 4,
+        "rows": 1,
+        "layout_mobile": "carousel"
+      }
+    },
+    "16373341564565608f": {
+      "type": "section-collections-list",
+      "blocks": {
+        "163733415623464854-0": {
+          "type": "collection",
+          "settings": {
+            "collection": "jackets-coats",
+            "title": ""
+          }
+        },
+        "163733415623464854-1": {
+          "type": "collection",
+          "settings": {
+            "collection": "dresses",
+            "title": ""
+          }
+        },
+        "163733415623464854-2": {
+          "type": "collection",
+          "settings": {
+            "collection": "shoes",
+            "title": "Shoes"
+          }
+        },
+        "163733415623464854-3": {
+          "type": "collection",
+          "settings": {
+            "collection": "accessories",
+            "title": "Accessories"
+          }
+        }
+      },
+      "block_order": [
+        "163733415623464854-0",
+        "163733415623464854-1",
+        "163733415623464854-2",
+        "163733415623464854-3"
+      ],
+      "settings": {
+        "title": "shop by collection",
+        "description": "",
+        "layout": "grid",
+        "aspect_ratio": 1,
+        "enable_slider": true
+      }
+    },
+    "1637336135ec37bf0f": {
+      "type": "section-collection",
+      "settings": {
+        "heading": "bring fashion to <b>work<\/b>",
+        "description": "",
+        "text_alignment": "center",
+        "link_text": "shop all workwear",
+        "link_url": "shopify:\/\/collections\/workwear-edit",
+        "button_color": "btn--black",
+        "button_style": "hero__btn btn btn--input btn--outline caps",
+        "featured_collection": "workwear-edit",
+        "grid": 4,
+        "rows": 1,
+        "layout_mobile": "1"
+      }
+    },
+    "16400954967138498e": {
+      "type": "section-look",
+      "blocks": {
+        "16400954964b064833-0": {
+          "type": "product",
+          "settings": {
+            "product": "potli-mirrors-bag-in-dark-pink-naylila",
+            "position_x": 50,
+            "position_y": 50
+          }
+        },
+        "16400954964b064833-1": {
+          "type": "product",
+          "settings": {
+            "product": "potli-mirrors-bag-in-gold-naylila",
+            "position_x": 50,
+            "position_y": 50
+          }
+        },
+        "5f628ba1-2d33-40af-ac4a-6034304c055d": {
+          "type": "product",
+          "settings": {
+            "product": "potli-mirrors-bag-in-beige-naylila",
+            "position_x": 50,
+            "position_y": 50
+          }
+        },
+        "821aa8fe-e9f8-4c5c-9d5c-c8c11dd844ec": {
+          "type": "product",
+          "settings": {
+            "product": "potli-mirrors-bag-in-lavender-naylila",
+            "position_x": 50,
+            "position_y": 50
+          }
+        }
+      },
+      "block_order": [
+        "16400954964b064833-0",
+        "16400954964b064833-1",
+        "5f628ba1-2d33-40af-ac4a-6034304c055d",
+        "821aa8fe-e9f8-4c5c-9d5c-c8c11dd844ec"
+      ],
+      "settings": {
+        "image": "shopify:\/\/shop_images\/72242093_578076433019757_2058931921148643684_n_1.jpg",
+        "bg_position": "center-center",
+        "title": "BESTSELLER: Potli Bags",
+        "section_bg": "#fafafa",
+        "dot_color": "#ffffff"
+      }
+    },
+    "16401188711e41c298": {
+      "type": "section-collection",
+      "settings": {
+        "heading": "The Shirt Edit",
+        "description": "<p>Shop our fabulous collection of silk blouses, luxury button-downs, weekend shirts, and even \"hoodie\" shirts. <\/p><p>Perfect for Zoom and IRL.<\/p>",
+        "text_alignment": "center",
+        "link_text": "Shop All",
+        "link_url": "shopify:\/\/collections\/the-shirt-edit",
+        "button_color": "btn--black",
+        "button_style": "hero__btn btn btn--input btn--outline caps",
+        "featured_collection": "the-shirt-edit",
+        "grid": 4,
+        "rows": 1,
+        "layout_mobile": "carousel"
+      }
+    },
+    "16373363457ef9dd41": {
+      "type": "section-blog",
+      "settings": {
+        "blog_name": "designer-profile",
+        "title": "meet our designers",
+        "grid": 4,
+        "rows": 1,
+        "aspect_ratio": 1,
+        "show_tags": false,
+        "show_author": false,
+        "show_date": false,
+        "show_button": true,
+        "show_comments": false
+      }
+    }
+  },
+  "order": [
+    "slideshow",
+    "163733449789b433f1",
+    "16373341564565608f",
+    "1637336135ec37bf0f",
+    "16400954967138498e",
+    "16401188711e41c298",
+    "16373363457ef9dd41"
+  ]
+}

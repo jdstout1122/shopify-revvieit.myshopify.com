@@ -1,0 +1,319 @@
+{%- assign filters_default = search.filters | default: collection.filters -%}
+
+<form data-collection-filters-form class="collection__filters">
+  {%- for filter in filters_default -%}
+    {% comment %} {{collection.tags}} {% endcomment %}
+        
+    {%- assign filter_check_active = filter.values | where: 'active', false -%}
+    {%- assign filter_check_count = filter.values | where: 'count', 0 -%}
+    {%- assign filter_hidden = false -%}
+
+    {%- if filter.type == 'list' and filter.values.size == filter_check_active.size and filter.values.size == filter_check_count.size -%}
+      {%- assign filter_hidden = true -%}
+    {%- endif -%}
+    
+    <div class="collection__sidebar__group{% if filter_hidden %} collection__sidebar__group--hidden{% endif %}"{% if filter_hidden %} style="display: none;"{% endif %}>
+      <p class="collection__sidebar__heading is-active" data-collection-sidebar-heading>
+        <span>{{ filter.label }} </span>
+        {%- if filter.active_values.size > 0 -%}
+          <span>({{ filter.active_values.size }})</span>
+        {%- endif -%}
+      </p>
+
+      {%- assign option_name_handle_separator = filter.label | handle | prepend: ',' | append: ',' -%}
+      {%- if settings.color_swatches -%}
+        {% comment %} Determine if current option matches swatch handle translations {% endcomment %}
+        {%- assign is_swatch_option = false -%}
+        {%- assign swatch_translation = 'general.swatches.color' | t -%}
+        {%- assign translation_string = swatch_translation | remove: '  ' | replace: ', ', ',' | replace: ' ,', ',' | replace: ',', '____' | handle | replace: '____', ',' | append: ',' | prepend: ',' -%}
+        
+        {%- if translation_string contains option_name_handle_separator -%}
+          {%- assign is_swatch_option = true -%}
+        {%- endif -%}
+      {%- endif -%}
+
+      {%- case filter.type -%}
+        {%- when 'list' -%}
+            <ul class="collection-nav {% if is_swatch_option %}collection-nav--inline{% endif %}">
+              {%- for filter_value in filter.values -%}
+                <li 
+                  class="sidebar__item {% if is_swatch_option %}sidebar__item--swatch{% endif %} {% if filter_value.active %}sidebar__item--active link--remove{% elsif filter_value.count == 0 and filter_value.active == false %}link--disable{% else %}link--add{% endif %}{% if forloop.index > 10 %} is-hidden{% endif %}" {% if filter_value.active %}data-link-remove{% elsif filter_value.count == 0 and filter_value.active == false %}{% else %}data-link-add{% endif %} {% if forloop.index > 10 %}data-link-hidden{% endif %} >
+                  {%- if is_swatch_option -%}
+                    <span class="swatch__button" data-tooltip="{{ filter_value.value | escape_once | capitalize }}">
+                      <input type="checkbox"
+                        name="{{ filter_value.param_name }}"
+                        value="{{ filter_value.value }}" 
+                        id="filter-{{ filter.label }}-{{ forloop.index }}"
+                        {% if filter_value.active -%}checked{%- endif %}
+                        {% if filter_value.count == 0 and filter_value.active == false -%}disabled{%- endif %}>
+
+                      <label for="filter-{{ filter.label }}-{{ forloop.index }}" data-swatch="{{ filter_value.label | escape_once }}">
+                        <span class="visually-hidden">{{ filter_value.label }}</span>
+                      </label>
+                    </span>
+                  {%- else -%}    
+                    <input type="checkbox"
+                      name="{{ filter_value.param_name }}"
+                      value="{{ filter_value.value }}"
+                      id="filter-{{ filter.label }}-{{ forloop.index }}"
+                      {% if filter_value.active -%}checked{%- endif %}
+                      {% if filter_value.count == 0 and filter_value.active == false -%}disabled{%- endif %}>
+                    <label for="filter-{{ filter.label }}-{{ forloop.index }}">{{ filter_value.label }}</label>
+                  {%- endif -%}
+                </li>
+              {%- endfor -%}
+            </ul>
+
+          {%- if filter.values.size > 10 -%}
+            <div class="collection__sidebar__actions">
+              <a href="#" data-show-more class="collection__sidebar__link">{{ 'collections.general.show_more' | t }}</a>
+            </div>
+          {%- endif -%}
+        {%- when 'price_range' -%}
+          <div class="filter__price" data-range-holder>
+            {%- assign filter_max_money = filter.range_max | money_without_currency | replace: ',', '' -%}
+            {%- assign filter_max_money_ceil = filter_max_money | ceil -%}
+            {%- assign filter_min_value = 0 -%}
+            {%- assign filter_max_value = filter_max_money_ceil -%}
+
+            {%- if filter.min_value.value -%}
+              {%- assign filter_min_value = filter.min_value.value | money_without_currency | replace: ',', '' | floor -%}
+            {%- endif -%}
+
+            {%- if filter.max_value.value -%}
+              {%- assign filter_max_value = filter.max_value.value | money_without_currency | replace: ',', '' | ceil -%}
+            {%- endif -%}
+
+            <div class="filter__price__range range" data-range-slider data-range-filter-update data-se-min="0" data-se-step="1" data-se-min-value="{{ filter_min_value }}" data-se-max-value="{{ filter_max_value }}" data-se-max="{{ filter_max_money_ceil }}">
+              <div class="range__dot range__dot--left" data-range-left>
+                <span>&nbsp;</span>
+              </div>
+              <div class="range__dot range__dot--right" data-range-right>
+                <span>&nbsp;</span>
+              </div>
+              <div class="range__line">
+                <span data-range-line>&nbsp;</span>
+              </div>
+            </div>
+
+            <div class="filter__price__fields">
+              <div class="filter__price__field filter__price__from">
+                <span>{{ cart.currency.symbol }}</span>
+  
+                <input 
+                  data-field-price-min
+                  class="filter__price__input"
+                  name="{{ filter.min_value.param_name }}"
+                  id="filter-price-from-{{ filter.label }}-{{ forloop.index }}"
+                  {% if filter.min_value.value %}value="{{ filter_min_value }}"{% endif %}
+                  type="number"
+                  placeholder="{{ filter_min_value }}"
+                  min="0"
+                  max="{{ filter.range_max | money_without_currency | replace: ',', '' }}">
+  
+                <label for="filter-price-from-{{ filter.label }}-{{ forloop.index }}">{{ 'products.general.from' | t }}</label>
+              </div>
+              <div class="filter__price__spacer">-</div>
+              <div class="filter__price__field filter__price__to">
+                <span>{{ cart.currency.symbol }}</span>
+  
+                <input 
+                  data-field-price-max
+                  class="filter__price__input"
+                  name="{{ filter.max_value.param_name }}"
+                  id="filter-price-to-{{ filter.label }}-{{ forloop.index }}"
+                  {% if filter.max_value.value %}value="{{ filter_max_value }}"{% endif %}
+                  type="number"
+                  placeholder="{{ filter_max_value }}"
+                  min="0"
+                  max="{{ filter_max_money_ceil }}">
+  
+                <label for="filter-price-to-{{ filter.label }}-{{ forloop.index }}">{{ 'products.general.to' | t }}</label>
+              </div>
+            </div>
+          </div>
+        {%- else -%}
+      {%- endcase -%}
+    </div>
+  {%- endfor -%}
+
+  {% comment %} {% for tag in collection.tags %}
+    {%- if tag contains 'Size' -%}
+    {{ tag | replace: 'Size_', ''}}
+    {% endif %}
+  {% endfor %} {% endcomment %}
+
+</form>
+
+<form class="collection__filters custom">
+    <div class="collection__sidebar__group custom_size" >
+      <p class="collection__sidebar__heading is-active" data-collection-sidebar-heading>
+        <span>Size</span>
+        {%- if filter.active_values.size > 0 -%}
+          <span>({{ filter.active_values.size }})</span>
+        {%- endif -%}
+      </p>
+
+      <ul class="collection-nav" style="display: flex; flex-direction: column;">
+        {%- for tag in collection.tags -%}
+          {% if tag contains 'Size_' %}
+            <li class="sidebar__item link--add" 
+            style="
+            {%- if tag contains '_XXS' -%} order:1;{%- endif -%}
+            {%- if tag contains '_XS' -%} order:2;{%- endif -%}
+            {%-  if tag contains '_S' -%} order:3;{%- endif -%}
+            {%-  if tag contains '_M' -%} order:4;{%- endif -%}
+            {%-  if tag contains '_L' -%} order:5;{%- endif -%}
+            {%-  if tag contains '_XL' -%} order:6;{%- endif -%}
+            {%-  if tag contains '_XXL' -%} order:7;{%- endif -%}
+            {%-  if tag contains '_3XL' -%} order:8;{%- endif -%}
+            {%- if tag contains '_3XL'-%} order:9;{%- endif -%}
+            {%- if tag contains '_4XL'-%} order:10;{%- endif -%}
+            "
+            >
+                  <input type="checkbox"
+                    name="custom.size"
+                    value="{{ tag }}" 
+                    id="filter-size-{{ forloop.index }}"
+                    {% if tag == '' -%}disabled{%- endif %}>
+                  <label for="filter-size-{{forloop.index }}" data-swatch="{{ tag | escape_once }}">
+                    <span>{{ tag | replace: 'Size_', '' | replace:'-', ' '}}</span>
+                  </label>
+            </li>
+          {% endif %}
+        {%- endfor -%}
+      </ul>
+    </div>
+
+    <div class="collection__sidebar__group custom_color {% if filter_hidden %} collection__sidebar__group--hidden{% endif %}"{% if filter_hidden %} style="display: none;"{% endif %}>
+      <p class="collection__sidebar__heading is-active" data-collection-sidebar-heading>
+        <span>Color</span>
+        {%- if filter.active_values.size > 0 -%}
+          <span>({{ filter.active_values.size }})</span>
+        {%- endif -%}
+      </p>
+
+      <ul class="collection-nav">
+        {%- for tag in collection.tags -%}
+          {% if tag contains 'Color_' %}
+            <li 
+              class="sidebar__item link--add" >
+                  <input type="checkbox"
+                    name="custom.color"
+                    value="{{ tag }}" 
+                    id="filter-color-{{ forloop.index }}"
+                    {% if tag == '' -%}disabled{%- endif %}>
+                  <label for="filter-color-{{forloop.index }}" data-swatch="{{ tag | escape_once }}">
+                    <span>{{ tag | replace: 'Color_', '' | replace: '-', ' '}}</span>
+                  </label>
+            </li>
+          {% endif %}
+        {%- endfor -%}
+      </ul>
+    </div>
+
+    <div class="collection__sidebar__group custom_type{% if filter_hidden %} collection__sidebar__group--hidden{% endif %}"{% if filter_hidden %} style="display: none;"{% endif %}>
+        {%- for tag in collection.tags -%}
+          {% if tag contains 'Type_' %}
+            {% assign a = tag | split: '_' %}
+            <p class="collection__sidebar__heading is-active" data-collection-sidebar-heading>
+              <span>{{a[1] | replace:'-', ' '}}</span>
+              {%- if filter.active_values.size > 0 -%}
+                <span>({{ filter.active_values.size }})</span>
+              {%- endif -%}
+            </p>
+            <ul class="collection-nav">
+              {% for subcat in collection.tags %}
+                {% if subcat contains a[1] %}
+                {% assign b = subcat | split: '_' %}
+                  
+                  <li 
+                    class="sidebar__item link--add" >
+                        <input type="checkbox"
+                          name="custom.type" 
+                          {{a[1]}}
+                          value="{{subcat}}" 
+                          id="filter-type-{{ forloop.index }}"
+                          {% if tag == '' -%}disabled{%- endif %}>
+                        <label for="filter-type-{{forloop.index }}" data-swatch="{{ tag | escape_once }}">
+                          <span>{{b[2]}}</span>
+                        </label>
+                  </li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+          {% endif %}
+        {%- endfor -%}
+    </div>
+
+    <div class="collection__sidebar__group custom_occasion{% if filter_hidden %} collection__sidebar__group--hidden{% endif %}"{% if filter_hidden %} style="display: none;"{% endif %}>
+      <p class="collection__sidebar__heading is-active" data-collection-sidebar-heading>
+        <span>Occasion</span>
+        {%- if filter.active_values.size > 0 -%}
+          <span>({{ filter.active_values.size }})</span>
+        {%- endif -%}
+      </p>
+
+      <ul class="collection-nav">
+        {%- for tag in collection.tags -%}
+          {% if tag contains 'Occasion_' %}
+            <li 
+              class="sidebar__item link--add" >
+                  <input type="checkbox"
+                    name="custom.occasion"
+                    value="{{ tag }}" 
+                    id="filter-occasion-{{ forloop.index }}"
+                    {% if tag == '' -%}disabled{%- endif %}>
+                  <label for="filter-occasion-{{forloop.index }}" data-swatch="{{ tag | escape_once }}">
+                    <span>{{ tag | replace: 'Occasion_', '' | replace:'-', ' '}}</span>
+                  </label>
+            </li>
+          {% endif %}
+        {%- endfor -%}
+      </ul>
+    </div> 
+
+</form>
+
+<script>
+(function() {
+  // Add custom code below this line
+
+  $( ".collection__sidebar form input:checkbox" ).change(function(){
+    console.log(window.location.search);
+    var value = $(this).val();
+    if (value.indexOf(' ')>-1){
+      value = value.replace(' ', '%20') 
+    }
+    if (window.location.href.indexOf($(this).attr("name"))>-1 && window.location.href.indexOf(value)>-1){
+        var url_string = window.location.href;
+        var to_remove=$(this).attr("name")+"="+value;
+        url_string=url_string.replace('&'+to_remove,'');
+        url_string=url_string.replace(to_remove,'');
+        window.location.href = url_string;
+    }
+    else if (window.location.href.indexOf($(this).attr("name"))>-1 && window.location.href.indexOf(value)==-1){
+      window.location.href = window.location.href + "&" + $(this).attr("name")+"=" + value;
+    }
+    else if (window.location.search ==''){
+      window.location.href = window.location.href + "?" + $(this).attr("name")+"=" + value;
+    }
+    else if(window.location.search.indexOf($(this).attr('name'))==-1){ 
+      window.location.href = window.location.href + "&" + $(this).attr("name")+"=" + value;
+    }
+    else{
+      window.location.href = window.location.href
+    }
+  })
+  
+  // ^^ Keep your scripts inside this IIFE function call to 
+  // avoid leaking your variables into the global scope.
+})();
+</script>
+
+<style>
+.collection__filters{
+  padding-bottom:25px;
+}
+</style>
+

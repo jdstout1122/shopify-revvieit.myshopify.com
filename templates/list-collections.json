@@ -1,0 +1,165 @@
+{
+  "sections": {
+    "main": {
+      "type": "list-collections",
+      "blocks": {
+        "0aba9f56-1c46-4673-9900-8817747b1617": {
+          "type": "collection",
+          "settings": {
+            "collection": "alchemy-detroit",
+            "collection_name": "",
+            "bg_position": "center-center"
+          }
+        },
+        "f10785fe-b233-4304-b5dc-0d3673b5c721": {
+          "type": "collection",
+          "settings": {
+            "collection": "ally",
+            "collection_name": "",
+            "bg_position": "center-center"
+          }
+        },
+        "b9a80a0d-f932-4eca-bd96-5f2840bbd134": {
+          "type": "collection",
+          "settings": {
+            "collection": "arteaga",
+            "collection_name": "",
+            "bg_position": "center-center"
+          }
+        },
+        "5a8358b7-880a-42d1-97d4-aa6025d59c3f": {
+          "type": "collection",
+          "settings": {
+            "collection": "ava-james-nyc",
+            "collection_name": "",
+            "bg_position": "center-center"
+          }
+        },
+        "693d13cf-2aa5-44a7-bc79-5dcb50fccd57": {
+          "type": "collection",
+          "settings": {
+            "collection": "bald-dot",
+            "collection_name": "",
+            "bg_position": "center-center"
+          }
+        },
+        "680a4ea6-8142-4da6-9466-c3472b9800e2": {
+          "type": "collection",
+          "settings": {
+            "collection": "catherine-gee",
+            "collection_name": "",
+            "bg_position": "center-center"
+          }
+        },
+        "7f210d64-e030-4a36-8f06-98cb107abcc6": {
+          "type": "collection",
+          "settings": {
+            "collection": "davi-and-bar",
+            "collection_name": "",
+            "bg_position": "center-center"
+          }
+        },
+        "721c42e2-2667-4ee7-9886-6c3f321298fd": {
+          "type": "collection",
+          "settings": {
+            "collection": "devan-gregori",
+            "collection_name": "",
+            "bg_position": "center-center"
+          }
+        },
+        "41cf1219-a528-4cb7-baf5-679e194e8e23": {
+          "type": "collection",
+          "settings": {
+            "collection": "formerly-yan",
+            "collection_name": "",
+            "bg_position": "center-center"
+          }
+        },
+        "c90a6ca2-ce1f-4986-a8c2-fc59de52ee0b": {
+          "type": "collection",
+          "settings": {
+            "collection": "heike",
+            "collection_name": "",
+            "bg_position": "center-center"
+          }
+        },
+        "59098f95-52ca-4fba-b179-22a00278b846": {
+          "type": "collection",
+          "settings": {
+            "collection": "hmete",
+            "collection_name": "",
+            "bg_position": "center-center"
+          }
+        },
+        "927e5642-88cf-4849-984b-4563f80929a0": {
+          "type": "collection",
+          "settings": {
+            "collection": "imm-shoes",
+            "collection_name": "",
+            "bg_position": "center-center"
+          }
+        },
+        "1b27baf8-c90e-4851-ac5e-a35109ed7034": {
+          "type": "collection",
+          "settings": {
+            "collection": "kovasky",
+            "collection_name": "",
+            "bg_position": "center-center"
+          }
+        },
+        "b9e3e75c-3ca5-454e-b163-9fa210850d40": {
+          "type": "collection",
+          "settings": {
+            "collection": "la-femme-apero",
+            "collection_name": "",
+            "bg_position": "center-center"
+          }
+        },
+        "d4c58972-b4f0-41be-a061-28b57f18f99b": {
+          "type": "collection",
+          "settings": {
+            "collection": "lea-poesie",
+            "collection_name": "",
+            "bg_position": "center-center"
+          }
+        },
+        "78cf816a-1401-4cf9-83a1-d3a58d7f0f05": {
+          "type": "collection",
+          "settings": {
+            "collection": "leyt",
+            "collection_name": "",
+            "bg_position": "center-center"
+          }
+        }
+      },
+      "block_order": [
+        "0aba9f56-1c46-4673-9900-8817747b1617",
+        "f10785fe-b233-4304-b5dc-0d3673b5c721",
+        "b9a80a0d-f932-4eca-bd96-5f2840bbd134",
+        "5a8358b7-880a-42d1-97d4-aa6025d59c3f",
+        "693d13cf-2aa5-44a7-bc79-5dcb50fccd57",
+        "680a4ea6-8142-4da6-9466-c3472b9800e2",
+        "7f210d64-e030-4a36-8f06-98cb107abcc6",
+        "721c42e2-2667-4ee7-9886-6c3f321298fd",
+        "41cf1219-a528-4cb7-baf5-679e194e8e23",
+        "c90a6ca2-ce1f-4986-a8c2-fc59de52ee0b",
+        "59098f95-52ca-4fba-b179-22a00278b846",
+        "927e5642-88cf-4849-984b-4563f80929a0",
+        "1b27baf8-c90e-4851-ac5e-a35109ed7034",
+        "b9e3e75c-3ca5-454e-b163-9fa210850d40",
+        "d4c58972-b4f0-41be-a061-28b57f18f99b",
+        "78cf816a-1401-4cf9-83a1-d3a58d7f0f05"
+      ],
+      "settings": {
+        "display_type": "selected",
+        "title": "Our Brands",
+        "grid": 6,
+        "rows": 1,
+        "layout_mobile": "carousel"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}
